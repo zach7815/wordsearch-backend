@@ -8,7 +8,7 @@ import pkg from 'lodash';
 const { escape } = pkg;
 import { Wordsearch } from './classes/wordsearch.class.js';
 import dotenv from 'dotenv';
-import { readFileSync, writeFileSync, readFile } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { htmlToPDF } from './puppeteerFunctions/pdfCreation.js';
 
 import { mergePDFS } from './puppeteerFunctions/mergePDF.js';
@@ -149,6 +149,10 @@ app.post('/api/WordsearchData', (req, res) => {
 });
 
 const PORT = process.env.PORT ?? 3000;
+
+app.get('/', (req, res) => {
+  res.send('The wordsearch app is running');
+});
 
 app.listen(PORT, () => {
   console.log(`App is listening on port ${PORT}`);
