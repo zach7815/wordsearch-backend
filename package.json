@@ -1,5 +1,52 @@
 {
+  "name": "wordsearchgenerator",
+  "version": "1.0.0",
+  "description": "A word search generator that allows users to generate word search sheets and answer sheets",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zach7815/wordSearchGenerator.git"
+  },
+  "keywords": [
+    "2dArray",
+    "matrix",
+    "wordSearch",
+    "game"
+  ],
+  "author": "Zach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zach7815/wordSearchGenerator/issues"
+  },
+  "homepage": "https://github.com/zach7815/wordSearchGenerator#readme",
   "devDependencies": {
-    "typescript": "^5.4.3"
+    "@babel/parser": "^7.24.5",
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "concurrently": "^8.2.2",
+    "esm": "^3.2.25",
+    "jest": "^29.5.0",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/lodash": "^4.17.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "lodash": "^4.17.21",
+    "pdf-merger-js": "^5.1.1",
+    "puppeteer": "^20.9.0"
   }
 }
