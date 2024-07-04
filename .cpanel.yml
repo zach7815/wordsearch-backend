@@ -1,4 +1,5 @@
+---
 deployment:
   tasks:
-    - export DEPLOYPATH=./wordsearchG/
+    - export DEPLOYPATH=/home/zachkbde/wordsearchG/
     - /bin/cp -R ./* $DEPLOYPATH
