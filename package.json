@@ -2,11 +2,11 @@
   "name": "wordsearchgenerator",
   "version": "1.0.0",
   "description": "A word search generator that allows users to generate word search sheets and answer sheets",
-  "main": "launcher.cjs",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "jest"
-  }, 
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zach7815/wordsearch-backend.git"
