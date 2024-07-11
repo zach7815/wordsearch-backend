@@ -18,9 +18,9 @@ dotenv.config();
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://wordsearch-frontend.onrender.com/');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'append,delete,entries,foreach,get,has,keys,set,values,Authorization');
     next();
 });
@@ -32,6 +32,7 @@ app.set('views', viewsDirectory);
 app.set('view engine', 'ejs');
 app.post('/api/WordsearchData', (req, res) => {
     const { submission } = req.body;
+    console.log(submission);
     const { authorName, header, title, difficulty, words } = submission;
     const removedNullsOrBlanks = words.filter((word) => word !== null || '');
     const escapedWords = removedNullsOrBlanks.map((word) => escape(word));
