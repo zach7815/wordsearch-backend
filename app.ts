@@ -16,7 +16,6 @@ import { emptyDirectory } from './utils/emptyDirectories.js';
 import path, { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { headerPaths } from './utils/paths.js';
-import { log } from 'console';
 
 dotenv.config();
 
@@ -123,9 +122,6 @@ app.post('/api/WordsearchData', (req, res) => {
         return finalPDFPath;
       })
       .then((finalPDFPath: string | undefined) => {
-        emptyDirectory('./html-templates');
-        emptyDirectory('./pdfOutput');
-
         if (finalPDFPath) {
           const verifiedPath = path.resolve(finalPDFPath);
           const pdf = readFileSync(verifiedPath);
@@ -147,6 +143,8 @@ app.post('/api/WordsearchData', (req, res) => {
     console.log(error);
   } finally {
     emptyDirectory('./finalPDF');
+    emptyDirectory('./html-templates');
+    emptyDirectory('./pdfOutput');
   }
 });
 
