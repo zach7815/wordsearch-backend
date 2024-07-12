@@ -5,5 +5,6 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=TRUE \
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
+RUN chmod -R 755 ./html-templates ./finalPDF ./pdfOutput
 COPY . .
 CMD ["node", "app.js"]
