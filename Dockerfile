@@ -6,6 +6,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci
 RUN mkdir -p ./html-templates ./finalPDF ./pdfOutput
-RUN chmod -R 755 ./html-templates ./finalPDF ./pdfOutput
+RUN chmod -R 755 ./html-templates/* ./finalPDF/* ./pdfOutput/*
 COPY . .
 CMD ["node", "app.js"]
