@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'fs';
 
 export const htmlToPDF = async (htmlFile: string, title: string) => {
   const browser = await puppeteer.launch({
-    // args: ['--disable-suid-sandbox', 'single-process', '--no-zygote'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
     headless: 'new',
     defaultViewport: null,
     executablePath:
