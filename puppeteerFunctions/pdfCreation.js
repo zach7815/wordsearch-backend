@@ -2,12 +2,10 @@ import puppeteer from 'puppeteer';
 import { readFileSync, writeFileSync } from 'fs';
 export const htmlToPDF = async (htmlFile, title) => {
     const browser = await puppeteer.launch({
-        // args: ['--disable-suid-sandbox', 'single-process', '--no-zygote'],
-        headless: 'new',
-        defaultViewport: null,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
         executablePath: process.env.NODE_ENV === 'production'
             ? process.env.PUPPETEER_EXECUTABLE_PATH
-            : puppeteer.executablePath(),
+            : await puppeteer.executablePath(),
     });
     const page = await browser.newPage();
     const html = readFileSync(htmlFile, 'utf-8');
