@@ -7,5 +7,5 @@ COPY package*.json ./
 RUN npm ci
 RUN mkdir -p ./html-templates ./finalPDF ./pdfOutput
 COPY . .
-RUN chmod -R 755 ./html-templates ./finalPDF ./pdfOutput
+RUN sudo chmod -R 755 ./html-templates ./finalPDF ./pdfOutput
 CMD ["node", "app.js"]
