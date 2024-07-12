@@ -1,10 +1,9 @@
 import puppeteer from 'puppeteer';
-import dotenv from 'dotenv';
 import { readFileSync, writeFileSync } from 'fs';
 
 export const htmlToPDF = async (htmlFile: string, title: string) => {
   const browser = await puppeteer.launch({
-    args: ['--disable-suid-sandbox', 'single-process', '--no-zygote'],
+    // args: ['--disable-suid-sandbox', 'single-process', '--no-zygote'],
     headless: 'new',
     defaultViewport: null,
     executablePath:
