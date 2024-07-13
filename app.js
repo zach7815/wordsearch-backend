@@ -32,7 +32,6 @@ app.set('views', viewsDirectory);
 app.set('view engine', 'ejs');
 app.post('/api/WordsearchData', (req, res) => {
     const { submission } = req.body;
-    console.log(submission);
     const { authorName, header, title, difficulty, words } = submission;
     const removedNullsOrBlanks = words.filter((word) => word !== null || '');
     const escapedWords = removedNullsOrBlanks.map((word) => escape(word));
@@ -77,6 +76,8 @@ app.post('/api/WordsearchData', (req, res) => {
             return finalPDFPath;
         })
             .then((finalPDFPath) => {
+            emptyDirectory('./html-templates');
+            emptyDirectory('./pdfOutput');
             if (finalPDFPath) {
                 const verifiedPath = path.resolve(finalPDFPath);
                 const pdf = readFileSync(verifiedPath);
@@ -98,8 +99,6 @@ app.post('/api/WordsearchData', (req, res) => {
     }
     finally {
         emptyDirectory('./finalPDF');
-        emptyDirectory('./html-templates');
-        emptyDirectory('./pdfOutput');
     }
 });
 const PORT = process.env.PORT ?? 3000;
