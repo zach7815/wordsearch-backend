@@ -10,7 +10,6 @@ import { Wordsearch } from './classes/wordsearch.class.js';
 import dotenv from 'dotenv';
 import { readFileSync, writeFileSync } from 'fs';
 import { htmlToPDF } from './puppeteerFunctions/pdfCreation.js';
-
 import { mergePDFS } from './puppeteerFunctions/mergePDF.js';
 import { emptyDirectory } from './utils/emptyDirectories.js';
 import path, { dirname, join } from 'path';
@@ -47,6 +46,7 @@ app.set('views', viewsDirectory);
 app.set('view engine', 'ejs');
 
 app.post('/api/WordsearchData', (req, res) => {
+  console.log('I have been pinged');
   const { submission }: { submission: UserSubmission } = req.body;
   const { authorName, header, title, difficulty, words } = submission;
 
@@ -139,11 +139,12 @@ app.post('/api/WordsearchData', (req, res) => {
         } else {
           console.error('finalPDFPath is undefined');
         }
+      })
+      .then(() => {
+        emptyDirectory('./finalPDF');
       });
   } catch (error) {
     console.log(error);
-  } finally {
-    emptyDirectory('./finalPDF');
   }
 });
 

@@ -31,6 +31,7 @@ const viewsDirectory = join(currentDirectory, 'views');
 app.set('views', viewsDirectory);
 app.set('view engine', 'ejs');
 app.post('/api/WordsearchData', (req, res) => {
+    console.log('I have been pinged');
     const { submission } = req.body;
     const { authorName, header, title, difficulty, words } = submission;
     const removedNullsOrBlanks = words.filter((word) => word !== null || '');
@@ -92,13 +93,13 @@ app.post('/api/WordsearchData', (req, res) => {
             else {
                 console.error('finalPDFPath is undefined');
             }
+        })
+            .then(() => {
+            emptyDirectory('./finalPDF');
         });
     }
     catch (error) {
         console.log(error);
-    }
-    finally {
-        emptyDirectory('./finalPDF');
     }
 });
 const PORT = process.env.PORT ?? 3000;
