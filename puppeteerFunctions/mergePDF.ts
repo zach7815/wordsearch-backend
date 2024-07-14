@@ -1,6 +1,4 @@
 const PDFMerger = (await import('pdf-merger-js')).default;
-
-import { log } from 'console';
 import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -32,6 +30,6 @@ export const mergePDFS = async (pdfOne: string, pdfTwo: string) => {
     await merger.save(savePath);
     return savePath;
   } catch (error) {
-    log(error);
+    console.log(error);
   }
 };

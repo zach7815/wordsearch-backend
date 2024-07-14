@@ -96,6 +96,9 @@ app.post('/api/WordsearchData', (req, res) => {
         })
             .then(() => {
             emptyDirectory('./finalPDF');
+        })
+            .finally(() => {
+            console.log('wordsearch sheet created');
         });
     }
     catch (error) {
