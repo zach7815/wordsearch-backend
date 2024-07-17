@@ -1,3 +1,10 @@
+interface wordPositionType {
+  [key: string]: {
+    direction: string;
+    coordinates: number[];
+  };
+}
+
 export class Wordsearch {
   private words: string[];
   private difficulty: { [key: string]: number } = {
@@ -8,10 +15,7 @@ export class Wordsearch {
   private grid: string[][];
   private size: number;
   private unusedWords: string[];
-  private highlightedItems: (
-    | { rowIndex: number; colIndex: number; letter: string }
-    | string
-  )[] = [];
+  private wordPositions: wordPositionType = {};
 
   constructor(words: string[], level: string) {
     this.grid = [[]];
@@ -102,11 +106,28 @@ export class Wordsearch {
             const rowIndex = startRow + i * rowStep;
             const colIndex = startCol + i * colStep;
 
+            const index = rowIndex * this.size + colIndex + 1;
+
+            const directions = [
+              'horizontal',
+              'vertical',
+              'diagonal up',
+              'diagonal down',
+            ];
+            const direction = directions[orientation];
+            if (this.wordPositions.hasOwnProperty(word)) {
+              this.wordPositions[word].coordinates.push(index);
+            } else {
+              this.wordPositions[word] = {
+                direction: direction,
+                coordinates: [],
+              };
+              this.wordPositions[word]?.coordinates.push(index);
+            }
+
             const letter = word[i].toUpperCase();
             this.grid[rowIndex][colIndex] = letter;
-            this.highlightedItems.push(
-              JSON.stringify({ rowIndex, colIndex, letter })
-            );
+
           }
           break;
         }
@@ -137,8 +158,7 @@ export class Wordsearch {
     return this.grid;
   }
 
-  get showHighlightedWords() {
-    return this.highlightedItems;
+  get wordLocations() {
+    return this.wordPositions
   }
 }
-

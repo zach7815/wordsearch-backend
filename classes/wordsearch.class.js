@@ -8,7 +8,7 @@ export class Wordsearch {
     grid;
     size;
     unusedWords;
-    highlightedItems = [];
+    wordPositions = {};
     constructor(words, level) {
         this.grid = [[]];
         this.words = words;
@@ -88,9 +88,26 @@ export class Wordsearch {
                     for (let i = 0; i < wordLength; i++) {
                         const rowIndex = startRow + i * rowStep;
                         const colIndex = startCol + i * colStep;
+                        const index = rowIndex * this.size + colIndex + 1;
+                        const directions = [
+                            'horizontal',
+                            'vertical',
+                            'diagonal up',
+                            'diagonal down',
+                        ];
+                        const direction = directions[orientation];
+                        if (this.wordPositions.hasOwnProperty(word)) {
+                            this.wordPositions[word].coordinates.push(index);
+                        }
+                        else {
+                            this.wordPositions[word] = {
+                                direction: direction,
+                                coordinates: [],
+                            };
+                            this.wordPositions[word]?.coordinates.push(index);
+                        }
                         const letter = word[i].toUpperCase();
                         this.grid[rowIndex][colIndex] = letter;
-                        this.highlightedItems.push(JSON.stringify({ rowIndex, colIndex, letter }));
                     }
                     break;
                 }
@@ -115,7 +132,8 @@ export class Wordsearch {
     get showGrid() {
         return this.grid;
     }
-    get showHighlightedWords() {
-        return this.highlightedItems;
+    get wordLocations() {
+        return this.wordPositions;
     }
 }
+//# sourceMappingURL=wordsearch.class.js.map

@@ -46,6 +46,8 @@ app.post('/api/WordsearchData', (req, res) => {
     wordsearch.makeGrid();
     const answers = wordsearch.placeWords();
     wordsearch.fillGrid();
+    const wordPositions = wordsearch.wordLocations;
+    console.log(wordPositions);
     const finishedWordSearch = wordsearch.showGrid;
     const wordSearchTemplate = readFileSync(join(viewsDirectory, 'wordsearch.ejs'), 'utf-8');
     const data = {
@@ -56,6 +58,7 @@ app.post('/api/WordsearchData', (req, res) => {
         answers: answers,
         words: escapedWords,
         level: escapedUserDetails[3],
+        wordLocations: wordPositions,
     };
     const answersTemplate = readFileSync(join(viewsDirectory, 'answers.ejs'), 'utf-8');
     const htmlWordSearch = ejs.render(wordSearchTemplate, {
@@ -112,3 +115,4 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}`);
 });
+//# sourceMappingURL=app.js.map

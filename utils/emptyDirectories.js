@@ -13,3 +13,4 @@ export const emptyDirectory = (directory) => {
         }
     });
 };
+//# sourceMappingURL=emptyDirectories.js.map

@@ -65,6 +65,8 @@ app.post('/api/WordsearchData', (req, res) => {
   wordsearch.makeGrid();
   const answers = wordsearch.placeWords();
   wordsearch.fillGrid();
+  const wordPositions = wordsearch.wordLocations;
+  console.log(wordPositions);
   const finishedWordSearch = wordsearch.showGrid;
 
   const wordSearchTemplate = readFileSync(
@@ -80,6 +82,7 @@ app.post('/api/WordsearchData', (req, res) => {
     answers: answers,
     words: escapedWords,
     level: escapedUserDetails[3],
+    wordLocations: wordPositions,
   };
 
   const answersTemplate = readFileSync(
