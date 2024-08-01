@@ -46,28 +46,28 @@ export class Wordsearch {
                 const orientation = Math.floor(Math.random() * 4); // 0 = horizontal, 1 = vertical, 2 = diagonal up, 3 = diagonal down
                 let startRow, startCol, rowStep, colStep;
                 if (orientation === 0) {
-                    // Horizontal
+                    // Horizontal- from left to right
                     startRow = Math.floor(Math.random() * this.size);
                     startCol = Math.floor(Math.random() * (this.size - wordLength + 1));
                     rowStep = 0;
                     colStep = 1;
                 }
                 else if (orientation === 1) {
-                    // Vertical
+                    // Vertical-from top to bottom
                     startRow = Math.floor(Math.random() * (this.size - wordLength + 1));
                     startCol = Math.floor(Math.random() * this.size);
                     rowStep = 1;
                     colStep = 0;
                 }
                 else if (orientation === 2) {
-                    // Diagonal up
+                    // Diagonal up- from bottom-left to right
                     startRow = Math.floor(Math.random() * (this.size - wordLength + 1) + wordLength - 1);
                     startCol = Math.floor(Math.random() * (this.size - wordLength + 1));
                     rowStep = -1;
                     colStep = 1;
                 }
                 else {
-                    // Diagonal down
+                    // Diagonal down from Left to right
                     startRow = Math.floor(Math.random() * (this.size - wordLength + 1));
                     startCol = Math.floor(Math.random() * (this.size - wordLength + 1));
                     rowStep = 1;
@@ -90,10 +90,10 @@ export class Wordsearch {
                         const colIndex = startCol + i * colStep;
                         const index = rowIndex * this.size + colIndex + 1;
                         const directions = [
-                            'horizontal',
-                            'vertical',
-                            'diagonal up',
-                            'diagonal down',
+                            'horizontal-left-right',
+                            'vertical-top-bottom',
+                            'diagonal-bottom-left-top-right',
+                            'diagonal-top-left-bottom-right',
                         ];
                         const direction = directions[orientation];
                         if (this.wordPositions.hasOwnProperty(word)) {
