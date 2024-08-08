@@ -42,18 +42,6 @@ List the ready features here:
 -  Creates a downloadable word search PDF and corresponding answer sheet.
 
 
-## Screenshots
-
-#### Example word search
-![Example Word search Sheet](client/public/Example-Wordsearch.jpg)
-#### Example Answer Sheet
-![Example Word search Answer Sheet](client/public/Example-Answers.jpg)
-#### App UI
-![App Starting UI Screenshot](client/public/Wordsearch-Gen-App-Screenshot.png)
-
-
-
-
 ## Setup
 To see this project in action visit the [demosite](https://wordsearch-frontend.onrender.com/)
 
@@ -99,7 +87,7 @@ https://wordsearch-backend.onrender.com/api/WordsearchData
 to
 http://localhost:3000
 ```
-Additionally you will need to run an instance of the backend and frontend at the same time for the app to work locally. 
+Additionally you will need to run an instance of the backend and frontend at the same time for the app to work locally.
 
 
 
