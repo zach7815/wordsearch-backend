@@ -35,7 +35,8 @@ app.post('/api/WordsearchData', (req, res) => {
     const { submission } = req.body;
     const { authorName, header, title, difficulty, words } = submission;
     const removedNullsOrBlanks = words.filter((word) => word !== null || '');
-    const escapedWords = removedNullsOrBlanks.map((word) => escape(word));
+    const removeRepeats = removedNullsOrBlanks.filter((word, index) => removedNullsOrBlanks.indexOf(word) === index);
+    const escapedWords = removeRepeats.map((word) => escape(word));
     const escapedUserDetails = [
         authorName,
         header,
