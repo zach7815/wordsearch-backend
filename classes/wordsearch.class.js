@@ -8,7 +8,7 @@ export class Wordsearch {
     grid;
     size;
     unusedWords;
-    highlightedItems = [];
+    wordPositions = {};
     constructor(words, level) {
         this.grid = [[]];
         this.words = words;
@@ -46,28 +46,28 @@ export class Wordsearch {
                 const orientation = Math.floor(Math.random() * 4); // 0 = horizontal, 1 = vertical, 2 = diagonal up, 3 = diagonal down
                 let startRow, startCol, rowStep, colStep;
                 if (orientation === 0) {
-                    // Horizontal
+                    // Horizontal- from left to right
                     startRow = Math.floor(Math.random() * this.size);
                     startCol = Math.floor(Math.random() * (this.size - wordLength + 1));
                     rowStep = 0;
                     colStep = 1;
                 }
                 else if (orientation === 1) {
-                    // Vertical
+                    // Vertical-from top to bottom
                     startRow = Math.floor(Math.random() * (this.size - wordLength + 1));
                     startCol = Math.floor(Math.random() * this.size);
                     rowStep = 1;
                     colStep = 0;
                 }
                 else if (orientation === 2) {
-                    // Diagonal up
+                    // Diagonal up- from bottom-left to right
                     startRow = Math.floor(Math.random() * (this.size - wordLength + 1) + wordLength - 1);
                     startCol = Math.floor(Math.random() * (this.size - wordLength + 1));
                     rowStep = -1;
                     colStep = 1;
                 }
                 else {
-                    // Diagonal down
+                    // Diagonal down from Left to right
                     startRow = Math.floor(Math.random() * (this.size - wordLength + 1));
                     startCol = Math.floor(Math.random() * (this.size - wordLength + 1));
                     rowStep = 1;
@@ -88,9 +88,26 @@ export class Wordsearch {
                     for (let i = 0; i < wordLength; i++) {
                         const rowIndex = startRow + i * rowStep;
                         const colIndex = startCol + i * colStep;
+                        const index = rowIndex * this.size + colIndex + 1;
+                        const directions = [
+                            'horizontal-left-right',
+                            'vertical-top-bottom',
+                            'diagonal-bottom-left-top-right',
+                            'diagonal-top-left-bottom-right',
+                        ];
+                        const direction = directions[orientation];
+                        if (this.wordPositions.hasOwnProperty(word)) {
+                            this.wordPositions[word].coordinates.push(index);
+                        }
+                        else {
+                            this.wordPositions[word] = {
+                                direction: direction,
+                                coordinates: [],
+                            };
+                            this.wordPositions[word]?.coordinates.push(index);
+                        }
                         const letter = word[i].toUpperCase();
                         this.grid[rowIndex][colIndex] = letter;
-                        this.highlightedItems.push(JSON.stringify({ rowIndex, colIndex, letter }));
                     }
                     break;
                 }
@@ -115,7 +132,8 @@ export class Wordsearch {
     get showGrid() {
         return this.grid;
     }
-    get showHighlightedWords() {
-        return this.highlightedItems;
+    get wordLocations() {
+        return this.wordPositions;
     }
 }
+//# sourceMappingURL=wordsearch.class.js.map

@@ -9,3 +9,4 @@ export const headerPaths = {
     nameDatePath: nameDatePath,
     namePath: namePath,
 };
+//# sourceMappingURL=paths.js.map

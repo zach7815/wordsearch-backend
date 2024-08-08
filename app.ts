@@ -51,9 +51,14 @@ app.post('/api/WordsearchData', (req, res) => {
   const { authorName, header, title, difficulty, words } = submission;
 
   const removedNullsOrBlanks = words.filter((word) => word !== null || '');
-  const escapedWords: string[] = removedNullsOrBlanks.map((word: string) =>
+  const removeRepeats = removedNullsOrBlanks.filter(
+    (word, index) => removedNullsOrBlanks.indexOf(word) === index
+  );
+  const escapedWords: string[] = removeRepeats.map((word: string) =>
     escape(word)
   );
+
+
   const escapedUserDetails: string[] = [
     authorName,
     header,
@@ -65,6 +70,8 @@ app.post('/api/WordsearchData', (req, res) => {
   wordsearch.makeGrid();
   const answers = wordsearch.placeWords();
   wordsearch.fillGrid();
+  const wordPositions = wordsearch.wordLocations;
+  console.log(wordPositions);
   const finishedWordSearch = wordsearch.showGrid;
 
   const wordSearchTemplate = readFileSync(
@@ -80,6 +87,7 @@ app.post('/api/WordsearchData', (req, res) => {
     answers: answers,
     words: escapedWords,
     level: escapedUserDetails[3],
+    wordLocations: wordPositions,
   };
 
   const answersTemplate = readFileSync(

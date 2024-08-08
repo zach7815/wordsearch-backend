@@ -26,3 +26,4 @@ export const htmlToPDF = async (htmlFile, title) => {
     const pdfFileName = `${title}.pdf`;
     writeFileSync(`./pdfOutput/${pdfFileName}`, pdfBuffer);
 };
+//# sourceMappingURL=pdfCreation.js.map

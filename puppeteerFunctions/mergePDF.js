@@ -24,3 +24,4 @@ export const mergePDFS = async (pdfOne, pdfTwo) => {
         console.log(error);
     }
 };
+//# sourceMappingURL=mergePDF.js.map
