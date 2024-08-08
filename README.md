@@ -73,15 +73,6 @@ Next ensure you are within the backend directory
 cd backend
 ```
 
-If you haven't already, ensure you install TypeScript. The following command installs TypeScript globally on your computer.
-
-```
-npm install -g typescript
-```
-
-Next ensure you are still in the client Directory and run the installation command:
-
-```
 npm install
 ```
 
@@ -99,7 +90,7 @@ https://wordsearch-backend.onrender.com/api/WordsearchData
 to
 http://localhost:3000
 ```
-Additionally you will need to run an instance of the backend and frontend at the same time for the app to work locally. 
+Additionally you will need to run an instance of the backend and frontend at the same time for the app to work locally.
 
 
 
